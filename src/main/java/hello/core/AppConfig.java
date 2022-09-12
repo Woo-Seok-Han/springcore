@@ -6,6 +6,8 @@ import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 //DI 란 ?
 //어플리케이션 실행 시점(런타임)에 외부에서 실제 구현 객체를 생성하고 클라이언트에 전달해서 클라이언트와
@@ -17,21 +19,26 @@ import hello.core.order.OrderServiceImpl;
 
 // 다른 구현체로 변경할 때 한 부분만 변경하면 된다
 // AppConfig 를 보면 역할과 구현 클래스가 한눈에 들어온다
+@Configuration
 public class AppConfig {
 
+    @Bean
     public MemberService memberService(){
         return new MemberServiceImpl(memberRepository());
     }
 
+    @Bean
     public MemoryMemberRepository memberRepository() {
         return new MemoryMemberRepository();
     }
 
+    @Bean
     public OrderService orderService(){
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
-    private RateDiscountPolicy discountPolicy() {
+    @Bean
+    public RateDiscountPolicy discountPolicy() {
         return new RateDiscountPolicy();
     }
 }
