@@ -18,7 +18,7 @@ import org.springframework.context.annotation.Configuration;
 
 
 // 다른 구현체로 변경할 때 한 부분만 변경하면 된다
-// AppConfig 를 보면 역할과 구현 클래스가 한눈에 들어온다
+// AppConfig 를 보면 역할과 구현 클래스가 한눈에 들어온다  
 @Configuration
 public class AppConfig {
 
